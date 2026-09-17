@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin – Wandelpoll Team 't Verzet</title>
+<meta name="description" content="Beheer van de wandelpoll.">
+<meta property="og:title" content="Admin – Wandelpoll Team 't Verzet">
+<meta property="og:description" content="Beheer van de wandelpoll.">
+<meta property="og:image" content="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paars:#422778;--paars-l:#efeaf7;--geel:#fdb913;--tekst:#2e293d;--rood:#c62828;--rood-l:#fdecea;--oranje:#e08600;--groen:#2e7d32;--rand:#e2dfe8;--grijs:#827f8b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--tekst);background:#f7f7f7}
+  .top{background:#fff;border-bottom:4px solid var(--geel)}
+  .top .in{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+  .logo{flex:none;display:block;width:84px;height:84px;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 4px rgba(46,41,61,.15);transition:transform .15s}
+  .logo:hover,.logo:focus-visible{transform:scale(1.04);outline:3px solid var(--geel);outline-offset:2px}
+  .logo img{width:100%;height:100%;object-fit:cover;object-position:44% 50%;display:block}
+  .top h1{margin:0;font-size:1.35rem;line-height:1.2;color:var(--paars);font-weight:700}
+  .top .sub{margin:2px 0 0;font-size:.9rem;color:var(--grijs)}
+  .band{background:var(--paars);color:#fff}
+  .band .in{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;font-size:.92rem;font-weight:500}
+  .steun{background:var(--geel);color:var(--tekst);text-decoration:none;font-weight:700;padding:7px 14px;border-radius:6px;font-size:.85rem;white-space:nowrap}
+  .steun:hover{filter:brightness(1.05);text-decoration:underline}
+  @media (max-width:560px){ .logo{width:64px;height:64px} .top h1{font-size:1.1rem} .top .sub{font-size:.8rem} }
+  main{max-width:1100px;margin:0 auto;padding:16px}
+  .card{background:#fff;border:1px solid var(--rand);border-radius:10px;padding:16px;margin-bottom:16px}
+  h2{font-size:1.05rem;margin:0 0 12px}
+  input{padding:10px;border:1px solid #bbb;border-radius:6px;font-size:1rem}
+  button{font-family:inherit;background:var(--paars);color:#fff;border:0;border-radius:6px;padding:10px 16px;font-size:.95rem;cursor:pointer}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .kpi{background:var(--paars-l);border-radius:8px;padding:12px}
+  .kpi b{display:block;font-size:1.5rem;color:var(--paars)}
+  .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  .tabs button{background:#fff;color:var(--paars);border:1px solid var(--paars)}
+  .tabs button.on{background:var(--paars);color:#fff}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:.88rem}
+  th,td{border-bottom:1px solid #eee;padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:#f5f5f5;position:sticky;top:0}
+  tr.day td{background:var(--paars-l);font-weight:700;text-transform:capitalize;color:var(--paars)}
+  .n0{color:#2e7d32;font-weight:700} .n1,.n2{color:#1565c0;font-weight:700}
+  tr.empty{background:#e8f5e9}
+  .err{color:var(--rood);margin-top:8px}
+  textarea{width:100%;min-height:80px;font-family:monospace;font-size:.85rem}
+  .small{font-size:.85rem;color:var(--grijs)}
+  a{color:var(--paars)}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="in">
+    <a class="logo" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener" title="Naar de teampagina van Team 't Verzet"><img src="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg" alt="Logo Team 't Verzet – naar de teampagina"></a>
+    <div><h1>Admin – Wandelpoll</h1><p class="sub">Levensloop 2026 – Team 't Verzet</p></div>
+  </div></div>
+  <div class="band"><div class="in"><span>Overzicht van alle inschrijvingen</span><a class="steun" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener">Teampagina</a></div></div>
+</header>
+<main>
+  <section class="card" id="login">
+    <h2>Aanmelden</h2>
+    <form id="loginForm">
+      <input id="code" type="password" placeholder="Admin-code" autocomplete="current-password" required>
+      <button type="submit">Toon overzicht</button>
+    </form>
+    <div class="err" id="loginErr"></div>
+  </section>
+
+  <div id="dash" hidden>
+    <section class="card">
+      <div class="kpis" id="kpis"></div>
+      <p class="small" id="links" style="margin-bottom:0"></p>
+    </section>
+    <section class="card">
+      <div class="tabs">
+        <button type="button" data-tab="slots" class="on">Per tijdslot</button>
+        <button type="button" data-tab="people">Per wandelaar</button>
+        <button type="button" data-tab="mails">E-mailadressen</button>
+        <button type="button" id="refresh" style="margin-left:auto">↻ Vernieuwen</button>
+      </div>
+      <div id="tab-slots" class="scroll"></div>
+      <div id="tab-people" class="scroll" hidden></div>
+      <div id="tab-mails" hidden>
+        <p class="small">Kopieer deze lijst naar het BCC-veld van je e-mail.</p>
+        <textarea id="mails" readonly></textarea>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+var CODE='';
+var API_URL = 'https://script.google.com/macros/s/AKfycbz1wXMpX-sroWfoxTLPClMKSpKqk5g98da2hjvPLr6JsyRKu_1oaImBIXrauKdbptha/exec';
+function run(fn, args){
+  return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({fn:fn, args:args||[]})})
+    .then(function(r){ if(!r.ok) throw new Error('Serverfout ('+r.status+'). Probeer later opnieuw.'); return r.json(); })
+    .then(function(d){ if(!d.ok) throw new Error(d.error); return d.result; }, function(e){ throw (e instanceof Error && /Serverfout|Onbekende/.test(e.message)) ? e : new Error('Geen verbinding met de server. Controleer je internet en probeer opnieuw.'); });
+}
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmt(iso){ if(!iso) return ''; var d=new Date(iso); return d.toLocaleString('nl-BE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }
+
+function load(){
+  run('getAdminData',[CODE]).then(show, function(e){
+    $('dash').hidden=true; $('login').hidden=false;
+    $('loginErr').textContent=String(e&&e.message||e).replace(/^Error:\s*/,'');
+  });
+}
+
+function show(d){
+  $('login').hidden=true; $('dash').hidden=false;
+  var covered=d.slots.filter(function(s){return s.walkers.length;}).length;
+  var hours=d.people.reduce(function(a,p){return a+p.slots.reduce(function(x,y){return x+y.n;},0);},0)/2;
+  var slotLabel={}; d.slots.forEach(function(s){slotLabel[s.key]=s;});
+  $('kpis').innerHTML=
+    '<div class="kpi"><b>'+d.people.length+'</b>inschrijvingen</div>'+
+    '<div class="kpi"><b>'+covered+' / '+d.slots.length+'</b>slots bezet</div>'+
+    '<div class="kpi"><b>'+(d.slots.length-covered)+'</b>slots nog vrij</div>'+
+    '<div class="kpi"><b>'+String(hours).replace('.',',')+' u</b>totaal wandeltijd (personen × tijd)</div>';
+  $('links').innerHTML='<a href="'+esc(d.sheetUrl)+'" target="_blank" rel="noopener">Open de Google Sheet</a> · Resterend mailquotum vandaag: '+d.mailQuota;
+
+  var h='<table><thead><tr><th>Tijdslot</th><th>#</th><th>Wandelaars</th></tr></thead><tbody>', day='';
+  d.slots.forEach(function(s){
+    if(s.dayLabel!==day){ h+='<tr class="day"><td colspan="3">'+esc(s.dayLabel)+'</td></tr>'; day=s.dayLabel; }
+    var n=s.walkers.reduce(function(a,w){return a+w.n;},0);
+    h+='<tr'+(n?'':' class="empty"')+'><td style="white-space:nowrap">'+s.from+' – '+s.to+'</td><td class="n'+Math.min(n,2)+'">'+n+'</td><td>'+
+      (n? s.walkers.map(function(w){return esc(w.voornaam+' '+w.naam)+(w.n>1?' <b>×'+w.n+'</b>':'')+' <span class="small">('+esc(w.email)+')</span>';}).join('<br>') : '<span class="n0">nog vrij</span>')+'</td></tr>';
+  });
+  $('tab-slots').innerHTML=h+'</tbody></table>';
+
+  var people=d.people.slice().sort(function(a,b){return (a.naam+a.voornaam).localeCompare(b.naam+b.voornaam,'nl');});
+  var p='<table><thead><tr><th>Naam</th><th>Voornaam</th><th>E-mail</th><th>#</th><th>Tijdslots</th><th>Gewijzigd</th></tr></thead><tbody>';
+  people.forEach(function(x){
+    p+='<tr><td>'+esc(x.naam)+'</td><td>'+esc(x.voornaam)+'</td><td>'+esc(x.email)+'</td><td>'+x.slots.length+'</td><td>'+
+      x.slots.map(function(y){var s=slotLabel[y.key]; return (s? esc(s.dayLabel.split(' ')[0].slice(0,2)+' '+s.from):esc(y.key))+(y.n>1?' (×'+y.n+')':'');}).join(', ')+'</td><td style="white-space:nowrap">'+fmt(x.gewijzigd)+'</td></tr>';
+  });
+  if(!people.length) p+='<tr><td colspan="6">Nog geen inschrijvingen.</td></tr>';
+  $('tab-people').innerHTML=p+'</tbody></table>';
+  $('mails').value=people.map(function(x){return x.email;}).join('; ');
+}
+
+$('loginForm').addEventListener('submit',function(e){ e.preventDefault(); CODE=$('code').value; $('loginErr').textContent=''; load(); });
+$('refresh').addEventListener('click',load);
+document.querySelector('.tabs').addEventListener('click',function(e){
+  var t=e.target.getAttribute('data-tab'); if(!t) return;
+  document.querySelectorAll('.tabs [data-tab]').forEach(function(b){b.classList.toggle('on',b===e.target);});
+  ['slots','people','mails'].forEach(function(n){ $('tab-'+n).hidden = n!==t; });
+});
+</script>
+</body>
+</html>

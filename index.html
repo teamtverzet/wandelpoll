@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wandelpoll Levensloop Beveren – Team 't Verzet</title>
+<meta name="description" content="Kies je wandelmoment(en) voor Team 't Verzet op Levensloop Beveren, 17–18 oktober 2026.">
+<meta property="og:title" content="Wandelpoll Levensloop Beveren – Team 't Verzet">
+<meta property="og:description" content="Kies je wandelmoment(en) voor Team 't Verzet op Levensloop Beveren, 17–18 oktober 2026.">
+<meta property="og:image" content="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paars:#422778;--paars-l:#efeaf7;--geel:#fdb913;--geel-l:#fff6dc;--rood:#c62828;--rood-l:#fdecea;--oranje:#e08600;--oranje-l:#fff4e0;--groen:#2e7d32;--groen-l:#e8f5e9;--blauw:#1565c0;--blauw-l:#e3f0fc;--tekst:#2e293d;--grijs:#827f8b;--rand:#e2dfe8;--bg:#f7f7f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--tekst);background:var(--bg);font-size:16px}
+  .top{background:#fff;border-bottom:4px solid var(--geel)}
+  .top .in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+  .logo{flex:none;display:block;width:84px;height:84px;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 1px 4px rgba(46,41,61,.15);transition:transform .15s}
+  .logo:hover,.logo:focus-visible{transform:scale(1.04);outline:3px solid var(--geel);outline-offset:2px}
+  .logo img{width:100%;height:100%;object-fit:cover;object-position:44% 50%;display:block}
+  .top h1{margin:0;font-size:1.35rem;line-height:1.2;color:var(--paars);font-weight:700}
+  .top .sub{margin:2px 0 0;font-size:.9rem;color:var(--grijs)}
+  .band{background:var(--paars);color:#fff}
+  .band .in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;font-size:.92rem;font-weight:500}
+  .steun{background:var(--geel);color:var(--tekst);text-decoration:none;font-weight:700;padding:7px 14px;border-radius:6px;font-size:.85rem;white-space:nowrap}
+  .steun:hover{filter:brightness(1.05);text-decoration:underline}
+  @media (max-width:560px){ .logo{width:64px;height:64px} .top h1{font-size:1.1rem} .top .sub{font-size:.8rem} }
+  main{max-width:960px;margin:0 auto;padding:16px 16px 140px}
+  .card{background:#fff;border:1px solid var(--rand);border-radius:12px;box-shadow:0 1px 3px rgba(46,41,61,.06);padding:16px;margin-bottom:16px}
+  h2{font-size:1.1rem;margin:0 0 12px;color:var(--paars)}
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  label{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px}
+  input[type=text],input[type=email]{width:100%;padding:10px;border:1px solid #bbb;border-radius:6px;font-size:1rem}
+  input:focus{outline:2px solid var(--paars);border-color:var(--paars)}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--grijs);margin-bottom:12px}
+  .legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+  .day{position:sticky;top:0;z-index:1;background:#fff;margin:6px 0 8px;font-size:1rem;text-transform:capitalize;color:var(--paars);border-bottom:2px solid var(--paars-l);padding-bottom:4px}
+  .days{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  .days .loading{grid-column:1/-1}
+  .daycol{min-width:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  .slot{position:relative;border:2px solid var(--rand);border-left:6px solid var(--c);border-radius:8px;background:var(--cb)}
+  .slot.open{--c:var(--groen);--cb:var(--groen-l)} .slot.bezet{--c:var(--blauw);--cb:var(--blauw-l)}
+  .tog{display:block;width:100%;background:none;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:8px 26px 8px 10px;border-radius:6px}
+  .slot .t{font-weight:700;font-size:.95rem;white-space:nowrap}
+  .slot .n{font-size:.8rem;margin-top:3px}
+  .slot.open .n{color:var(--groen)}
+  .badge{display:inline-block;background:var(--blauw);color:#fff;border-radius:10px;padding:1px 8px;font-weight:700;font-size:.78rem}
+  .slot.sel{border-color:var(--paars);border-left-color:var(--c);background:#fff;box-shadow:0 0 0 1px var(--paars)}
+  .slot.sel::after{content:"✓";position:absolute;top:6px;right:4px;background:var(--paars);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:.8rem;pointer-events:none}
+  .tog:focus-visible,.qty button:focus-visible{outline:3px solid var(--paars);outline-offset:1px}
+  .qty{display:flex;align-items:center;gap:4px;padding:0 8px 8px 10px;flex-wrap:wrap}
+  .qty span{font-size:.75rem;color:var(--grijs);margin-right:2px}
+  .qty button{width:30px;height:30px;border:1px solid var(--paars);background:#fff;color:var(--paars);border-radius:6px;font:inherit;font-weight:700;cursor:pointer;padding:0}
+  .qty button.on{background:var(--paars);color:#fff}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--paars);box-shadow:0 -2px 8px rgba(0,0,0,.08);padding:12px 16px}
+  .bar .in{max-width:960px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .bar .info{flex:1;min-width:160px;font-size:.9rem}
+  button.btn{background:var(--geel);color:var(--tekst);border:0;border-radius:6px;padding:12px 20px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+  button.btn:hover{filter:brightness(1.05)}
+  button.btn:disabled{opacity:.5;cursor:wait}
+  button.link{background:none;border:0;color:var(--rood);text-decoration:underline;cursor:pointer;font-size:.9rem;padding:6px}
+  .msg{padding:12px;border-radius:8px;margin-bottom:16px;display:none}
+  .msg.ok{display:block;background:var(--groen-l);color:var(--groen)}
+  .msg.err{display:block;background:var(--rood-l);color:var(--rood)}
+  .msg.info{display:block;background:var(--paars-l);color:var(--paars)}
+  .stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem}
+  .stats b{font-size:1.2rem;display:block}
+  .small{font-size:.85rem;color:var(--grijs)}
+  .loading{text-align:center;padding:40px;color:var(--grijs)}
+  @media (max-width:560px){
+    main{padding-left:8px;padding-right:8px}
+    .card{padding:12px 10px}
+    .days{gap:6px}
+    .grid{grid-template-columns:1fr;gap:6px}
+    .slot{border-left-width:5px}
+    .tog{padding:6px 22px 6px 8px}
+    .slot .t{font-size:.85rem}
+    .slot .n{font-size:.72rem}
+    .qty{padding:0 6px 6px 8px;gap:3px}
+    .qty span{width:100%}
+    .qty button{width:28px;height:28px}
+    .day{font-size:.9rem}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="in">
+    <a class="logo" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener" title="Naar de teampagina van Team 't Verzet"><img src="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg" alt="Logo Team 't Verzet – naar de teampagina"></a>
+    <div><h1>Wandelpoll Levensloop Beveren</h1><p class="sub">Team 't Verzet · samen 24 uur stappen tegen kanker</p></div>
+  </div></div>
+  <div class="band"><div class="in"><span>🗓️ za 17/10 15:00 → zo 18/10 15:00</span><a class="steun" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener">Steun ons team</a></div></div>
+</header>
+<main>
+  <div id="msg" class="msg" role="status"></div>
+
+  <section class="card">
+    <h2 id="formTitle">1. Jouw gegevens</h2>
+    <div class="fields">
+      <div><label for="voornaam">Voornaam *</label><input id="voornaam" type="text" autocomplete="given-name" required></div>
+      <div><label for="naam">Naam *</label><input id="naam" type="text" autocomplete="family-name" required></div>
+      <div><label for="email">E-mailadres *</label><input id="email" type="email" autocomplete="email" required></div>
+    </div>
+    <p class="small" style="margin:10px 0 0">Je krijgt een bevestiging per e-mail met een persoonlijke link om je keuze later te wijzigen.
+      Link kwijt? <button type="button" class="link" style="color:var(--paars)" id="resendBtn">Stuur mijn link opnieuw</button></p>
+  </section>
+
+  <section class="card">
+    <h2>2. Kies één of meer tijdslots (30 min) en met hoeveel je stapt</h2>
+    <div class="stats" id="stats"></div>
+    <div class="legend" style="margin-top:12px">
+      <span style="--c:var(--groen)">nog vrij</span>
+      <span style="--c:var(--blauw)">al wandelaars ingeschreven (aantal in het vakje)</span>
+      <span style="--c:var(--paars)">jouw keuze – kies daaronder met hoeveel je stapt (1–4)</span>
+    </div>
+    <div id="slots" class="days"><div class="loading">Tijdslots laden…</div></div>
+  </section>
+</main>
+
+<div class="bar"><div class="in">
+  <div class="info" id="barInfo">Nog geen tijdslot gekozen</div>
+  <button type="button" class="link" id="cancelBtn" hidden>Uitschrijven</button>
+  <button type="button" class="btn" id="saveBtn">Inschrijven</button>
+</div></div>
+
+<script>
+var TOKEN = (new URLSearchParams(location.search).get('t')||'').replace(/[^a-f0-9]/gi,'');
+var slots = [], selected = {}, orig = {}, isEdit = false;
+
+function $(id){ return document.getElementById(id); }
+var API_URL = 'https://script.google.com/macros/s/AKfycbz1wXMpX-sroWfoxTLPClMKSpKqk5g98da2hjvPLr6JsyRKu_1oaImBIXrauKdbptha/exec';
+function run(fn, args){
+  return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({fn:fn, args:args||[]})})
+    .then(function(r){ if(!r.ok) throw new Error('Serverfout ('+r.status+'). Probeer later opnieuw.'); return r.json(); })
+    .then(function(d){ if(!d.ok) throw new Error(d.error); return d.result; }, function(e){ throw (e instanceof Error && /Serverfout|Onbekende/.test(e.message)) ? e : new Error('Geen verbinding met de server. Controleer je internet en probeer opnieuw.'); });
+}
+function msg(type, text){ var m=$('msg'); m.className='msg '+type; m.textContent=text; m.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+function errText(e){ return (e && e.message ? e.message : String(e)).replace(/^Error:\s*/,''); }
+
+function render(){
+  var html='', day='', free=0, persons=0;
+  slots.forEach(function(s){
+    var n = s.count - (orig[s.key]||0) + (selected[s.key]||0);
+    if(n===0) free++;
+    if(s.dayLabel!==day){ if(day) html+='</div></div>'; html+='<div class="daycol"><h3 class="day">'+s.dayLabel+'</h3><div class="grid">'; day=s.dayLabel; }
+    var q=selected[s.key]||0;
+    html+='<div class="slot '+(n===0?'open':'bezet')+(q?' sel':'')+'">'+
+      '<button type="button" class="tog" data-k="'+s.key+'" aria-pressed="'+!!q+'">'+
+        '<div class="t">'+s.from+' – '+s.to+'</div>'+
+        '<div class="n">'+(n===0?'nog vrij':'<span class="badge">'+n+'</span> wandelaar'+(n>1?'s':''))+'</div>'+
+      '</button>';
+    if(q){
+      html+='<div class="qty" role="group" aria-label="Aantal wandelaars '+s.from+'"><span>Aantal:</span>';
+      for(var i=1;i<=4;i++) html+='<button type="button" data-k="'+s.key+'" data-q="'+i+'" class="'+(i===q?'on':'')+'" aria-pressed="'+(i===q)+'">'+i+'</button>';
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+  html+='</div></div>';
+  $('slots').innerHTML=html;
+  $('stats').innerHTML='<div><b>'+(slots.length-free)+' / '+slots.length+'</b>slots bezet</div><div><b>'+free+'</b>slots nog vrij</div>';
+  var keys=Object.keys(selected), c=keys.length;
+  keys.forEach(function(k){persons+=selected[k];});
+  $('barInfo').textContent = c ? c+' tijdslot'+(c>1?'s':'')+' gekozen ('+(c/2).toString().replace('.',',')+' uur)' : 'Nog geen tijdslot gekozen';
+}
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+$('slots').addEventListener('click', function(ev){
+  var b = ev.target.closest('button[data-k]'); if(!b) return;
+  var k=b.getAttribute('data-k'), q=b.getAttribute('data-q'), sel;
+  if(q){ selected[k]=parseInt(q,10); sel='button[data-k="'+k+'"][data-q="'+q+'"]'; }
+  else { if(selected[k]) delete selected[k]; else selected[k]=1; sel='.tog[data-k="'+k+'"]'; }
+  render();
+  var nb=document.querySelector(sel); if(nb) nb.focus();
+});
+
+function setEditMode(me){
+  isEdit=true;
+  $('voornaam').value=me.voornaam; $('naam').value=me.naam; $('email').value=me.email;
+  selected={}; orig={};
+  me.slots.forEach(function(x){ selected[x.key]=x.n; orig[x.key]=x.n; });
+  $('formTitle').textContent='1. Jouw gegevens (je past een bestaande inschrijving aan)';
+  $('saveBtn').textContent='Wijzigingen opslaan';
+  $('cancelBtn').hidden=false;
+}
+
+function load(){
+  run('getData',[TOKEN]).then(function(d){
+    slots=d.slots;
+    if(d.me){ setEditMode(d.me); msg('info','Welkom terug, '+d.me.voornaam+'! Pas je keuze aan en klik op "Wijzigingen opslaan".'); }
+    else if(d.tokenInvalid){ TOKEN=''; history.replaceState(null,'',location.pathname); msg('err','Deze wijzigingslink is niet meer geldig. Je kan je opnieuw inschrijven.'); }
+    render();
+  }).catch(function(e){ $('slots').innerHTML='<div class="loading">Laden mislukt: '+esc(errText(e))+'</div>'; });
+}
+
+$('saveBtn').addEventListener('click', function(){
+  var f={voornaam:$('voornaam').value.trim(), naam:$('naam').value.trim(), email:$('email').value.trim(), slots:Object.keys(selected).map(function(k){return {key:k,n:selected[k]};}), token:TOKEN};
+  if(!f.voornaam||!f.naam||!f.email){ msg('err','Vul je voornaam, naam en e-mailadres in.'); $(!f.voornaam?'voornaam':!f.naam?'naam':'email').focus(); return; }
+  if(!$('email').checkValidity()){ msg('err','Geef een geldig e-mailadres in.'); $('email').focus(); return; }
+  if(!f.slots.length){ msg('err','Kies minstens één tijdslot.'); return; }
+  var btn=$('saveBtn'); btn.disabled=true; var t=btn.textContent; btn.textContent='Bezig…';
+  run('saveRegistration',[f]).then(function(r){
+    slots=r.slots;
+    if(r.status==='exists'){
+      msg('info','Dit e-mailadres is al ingeschreven. We hebben je persoonlijke link opnieuw gemaild zodat je je keuze kan aanpassen.');
+    } else {
+      TOKEN=r.token; history.replaceState(null,'','?t='+TOKEN);
+      setEditMode({voornaam:f.voornaam,naam:f.naam,email:f.email,slots:f.slots});
+      msg('ok', r.status==='created' ? 'Bedankt '+f.voornaam+'! Je inschrijving is opgeslagen. Je ontvangt een bevestiging op '+f.email+'.' : 'Je wijzigingen zijn opgeslagen. Je ontvangt een nieuwe bevestiging per e-mail.');
+    }
+    render();
+  }).catch(function(e){ msg('err',errText(e)); })
+  .then(function(){ btn.disabled=false; btn.textContent=isEdit?'Wijzigingen opslaan':t; });
+});
+
+$('cancelBtn').addEventListener('click', function(){
+  var b=$('cancelBtn');
+  if(b.dataset.confirm!=='1'){ b.dataset.confirm='1'; b.textContent='Zeker? Klik nogmaals om uit te schrijven'; return; }
+  b.disabled=true;
+  run('cancelRegistration',[TOKEN]).then(function(r){
+    slots=r.slots; TOKEN=''; isEdit=false; history.replaceState(null,'',location.pathname); selected={}; orig={};
+    b.hidden=true; b.dataset.confirm=''; b.textContent='Uitschrijven';
+    $('saveBtn').textContent='Inschrijven'; $('formTitle').textContent='1. Jouw gegevens';
+    msg('ok','Je bent uitgeschreven. Je ontvangt hiervan een bevestiging.');
+    render();
+  }).catch(function(e){ msg('err',errText(e)); }).then(function(){ b.disabled=false; });
+});
+
+$('resendBtn').addEventListener('click', function(){
+  var e=$('email').value.trim();
+  if(!e||!$('email').checkValidity()){ msg('info','Vul hierboven je e-mailadres in en klik dan opnieuw op "Stuur mijn link opnieuw".'); $('email').focus(); return; }
+  run('resendLink',[e]).then(function(){ msg('ok','Als dit adres ingeschreven is, ontvang je binnen enkele minuten je persoonlijke link.'); })
+    .catch(function(x){ msg('err',errText(x)); });
+});
+
+load();
+</script>
+</body>
+</html>
