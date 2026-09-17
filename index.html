@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<base target="_top">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wandelpoll Levensloop Beveren – Team 't Verzet</title>
+<meta name="description" content="Kies je wandelmoment(en) voor Team 't Verzet op Levensloop Beveren, 17–18 oktober 2026.">
+<meta property="og:title" content="Wandelpoll Levensloop Beveren – Team 't Verzet">
+<meta property="og:description" content="Kies je wandelmoment(en) voor Team 't Verzet op Levensloop Beveren, 17–18 oktober 2026.">
+<meta property="og:image" content="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -84,10 +89,10 @@
 <body>
 <header>
   <div class="top"><div class="in">
-    <a class="logo" href="<?= teamUrl ?>" target="_blank" rel="noopener" title="Naar de teampagina van Team 't Verzet"><img src="<?= logoUrl ?>" alt="Logo Team 't Verzet – naar de teampagina"></a>
+    <a class="logo" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener" title="Naar de teampagina van Team 't Verzet"><img src="https://assets.koalect.com/clients/24fbea48-af66-4699-8e23-cfe3e3eb0cf0/projects/8d803179-da0b-49bc-bd5e-27d820d2c5f9/cover/small_logo20-20landscape_60ed.jpg" alt="Logo Team 't Verzet – naar de teampagina"></a>
     <div><h1>Wandelpoll Levensloop Beveren</h1><p class="sub">Team 't Verzet · samen 24 uur stappen tegen kanker</p></div>
   </div></div>
-  <div class="band"><div class="in"><span>🗓️ za 17/10 15:00 → zo 18/10 15:00</span><a class="steun" href="<?= teamUrl ?>" target="_blank" rel="noopener">Steun ons team</a></div></div>
+  <div class="band"><div class="in"><span>🗓️ za 17/10 15:00 → zo 18/10 15:00</span><a class="steun" href="https://rfl.relayforlife.be/nl-NL/project/team-t-verzet-f96b8c13e?tab=alles-over-het-team" target="_blank" rel="noopener">Steun ons team</a></div></div>
 </header>
 <main>
   <div id="msg" class="msg" role="status"></div>
@@ -122,14 +127,15 @@
 </div></div>
 
 <script>
-var TOKEN = <?!= JSON.stringify(token) ?>;
+var TOKEN = (new URLSearchParams(location.search).get('t')||'').replace(/[^a-f0-9]/gi,'');
 var slots = [], selected = {}, orig = {}, isEdit = false, MAX = 4; // MAX komt van de server (CONFIG.MAX_PER_INSCHRIJVING)
 
 function $(id){ return document.getElementById(id); }
+var API_URL = 'https://script.google.com/macros/s/AKfycbz1wXMpX-sroWfoxTLPClMKSpKqk5g98da2hjvPLr6JsyRKu_1oaImBIXrauKdbptha/exec';
 function run(fn, args){
-  return new Promise(function(res, rej){
-    google.script.run.withSuccessHandler(res).withFailureHandler(function(e){ rej(e); })[fn].apply(null, args || []);
-  });
+  return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({fn:fn, args:args||[]})})
+    .then(function(r){ if(!r.ok) throw new Error('Serverfout ('+r.status+'). Probeer later opnieuw.'); return r.json(); })
+    .then(function(d){ if(!d.ok) throw new Error(d.error); return d.result; }, function(e){ throw (e instanceof Error && /Serverfout|Onbekende/.test(e.message)) ? e : new Error('Geen verbinding met de server. Controleer je internet en probeer opnieuw.'); });
 }
 function msg(type, text){ var m=$('msg'); m.className='msg '+type; m.textContent=text; m.scrollIntoView({behavior:'smooth',block:'nearest'}); }
 function errText(e){ return (e && e.message ? e.message : String(e)).replace(/^Error:\s*/,''); }
@@ -186,7 +192,7 @@ function load(){
     slots=d.slots;
     if(d.max>0){ MAX=d.max; $('maxLbl').textContent=MAX; }
     if(d.me){ setEditMode(d.me); msg('info','Welkom terug, '+d.me.voornaam+'! Pas je keuze aan en klik op "Wijzigingen opslaan".'); }
-    else if(d.tokenInvalid){ TOKEN=''; msg('err','Deze wijzigingslink is niet meer geldig. Je kan je opnieuw inschrijven.'); }
+    else if(d.tokenInvalid){ TOKEN=''; history.replaceState(null,'',location.pathname); msg('err','Deze wijzigingslink is niet meer geldig. Je kan je opnieuw inschrijven.'); }
     render();
   }).catch(function(e){ $('slots').innerHTML='<div class="loading">Laden mislukt: '+esc(errText(e))+'</div>'; });
 }
@@ -202,7 +208,7 @@ $('saveBtn').addEventListener('click', function(){
     if(r.status==='exists'){
       msg('info','Dit e-mailadres is al ingeschreven. We hebben je persoonlijke link opnieuw gemaild zodat je je keuze kan aanpassen.');
     } else {
-      TOKEN=r.token;
+      TOKEN=r.token; history.replaceState(null,'','?t='+TOKEN);
       setEditMode({voornaam:f.voornaam,naam:f.naam,email:f.email,slots:f.slots});
       msg('ok', r.status==='created' ? 'Bedankt '+f.voornaam+'! Je inschrijving is opgeslagen. Je ontvangt een bevestiging op '+f.email+'.' : 'Je wijzigingen zijn opgeslagen. Je ontvangt een nieuwe bevestiging per e-mail.');
     }
@@ -216,7 +222,7 @@ $('cancelBtn').addEventListener('click', function(){
   if(b.dataset.confirm!=='1'){ b.dataset.confirm='1'; b.textContent='Zeker? Klik nogmaals om uit te schrijven'; return; }
   b.disabled=true;
   run('cancelRegistration',[TOKEN]).then(function(r){
-    slots=r.slots; TOKEN=''; isEdit=false; selected={}; orig={};
+    slots=r.slots; TOKEN=''; isEdit=false; history.replaceState(null,'',location.pathname); selected={}; orig={};
     b.hidden=true; b.dataset.confirm=''; b.textContent='Uitschrijven';
     $('saveBtn').textContent='Inschrijven'; $('formTitle').textContent='1. Jouw gegevens';
     msg('ok','Je bent uitgeschreven. Je ontvangt hiervan een bevestiging.');
